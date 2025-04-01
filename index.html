@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            text-align: center;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #ff1493;
+            margin-top: 50px;
+        }
+        #surpriseMessage, #jokeMessage, #randomFact {
+            display: none;
+            font-size: 20px;
+            color: #ff4500;
+            margin-top: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .fun-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 100px;
+            margin: 10px;
+        }
+        .fun-button img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        .fun-button span {
+            margin-top: 5px;
+            font-size: 16px;
+            color: white;
+            font-weight: bold;
+        }
+        .hidden-photo {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        .hidden-photo img {
+            width: 300px;
+            height: auto;
+        }
+        .hidden-photo button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        @media screen and (max-width: 768px) {
+            .fun-button img {
+                width: 60px;
+                height: 60px;
+            }
+            .fun-button span {
+                font-size: 14px;
+            }
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday, My Love! 🎂❤️</h1>
+    <img src="birthday_photo.jpg" alt="Happy Birthday" onclick="showRandomPhoto()">  
+    <div class="button-container">
+        <button class="fun-button" onclick="showSurprise()">
+            <img src="surprise_icon.png" alt="Surprise">
+            <span>Surprise</span>
+        </button>
+        <button class="fun-button" onclick="tellJoke()">
+            <img src="joke_icon.png" alt="Joke">
+            <span>Tell a Joke</span>
+        </button>
+        <button class="fun-button" onclick="showRandomFact()">
+            <img src="fact_icon.png" alt="Fact">
+            <span>Random Fact</span>
+        </button>
+    </div>
+    <p id="surpriseMessage">You are my sunshine, my everything! I love you forever! 💖</p>
+    <p id="jokeMessage"></p>
+    <p id="randomFact"></p>
+    <div class="hidden-photo" id="photoPopup">
+        <img id="randomPhoto" src="" alt="Random Memory">
+        <br>
+        <button onclick="closePhoto()">Close</button>
+    </div>
+    <script>
+        const photos = [
+            'photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg'
+        ];
+        const jokes = [
+            "Why don't scientists trust atoms? Because they make up everything!",
+            "What do you call fake spaghetti? An impasta!",
+            "Why did the bicycle fall over? Because it was two-tired!"
+        ];
+        const funFacts = [
+            "Honey never spoils! Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3000 years old and still perfectly good to eat!",
+            "Octopuses have three hearts and their blood is blue!",
+            "Bananas are berries, but strawberries aren’t!"
+        ];
+
+        function showSurprise() {
+            document.getElementById("surpriseMessage").style.display = "block";
+        }
+        function showRandomPhoto() {
+            let randomIndex = Math.floor(Math.random() * photos.length);
+            document.getElementById("randomPhoto").src = photos[randomIndex];
+            document.getElementById("photoPopup").style.display = "block";
+        }
+        function closePhoto() {
+            document.getElementById("photoPopup").style.display = "none";
+        }
+        function tellJoke() {
+            let randomIndex = Math.floor(Math.random() * jokes.length);
+            document.getElementById("jokeMessage").innerText = jokes[randomIndex];
+            document.getElementById("jokeMessage").style.display = "block";
+        }
+        function showRandomFact() {
+            let randomIndex = Math.floor(Math.random() * funFacts.length);
+            document.getElementById("randomFact").innerText = funFacts[randomIndex];
+            document.getElementById("randomFact").style.display = "block";
+        }
+    </script>
+</body>
+</html>
